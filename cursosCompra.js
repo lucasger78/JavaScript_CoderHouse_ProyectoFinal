@@ -16,7 +16,7 @@ const cursos = [
 
   {
     nombre: "Guitarra: Eléctrica / Acústica / Ukelele",
-    precio: "$ 5000",
+    precio: 5000,
     fechaInicio: "Inicio: 10/08",
     disponibilidad: "Curso No Disponible",
     imagen: src="static/assets/compraCurso/guitarra.jpg"
@@ -24,14 +24,14 @@ const cursos = [
 
   {
     nombre: "Saxo Alto / Tenor",
-    precio: "$ 6500",
+    precio: 6500,
     fechaInicio: "Inicio: 12/08",
     disponibilidad: "Curso Disponible",
     imagen: src="static/assets/compraCurso/saxo.jpg"
   },
   {
     nombre: "Flauta Traversa",
-    precio: "$ 4500",
+    precio: 4500,
     fechaInicio: "Inicio: 10/08",
     disponibilidad: "Curso Disponible",
     imagen: src="static/assets/compraCurso/flauta.jpg"
@@ -39,7 +39,7 @@ const cursos = [
 
   {
     nombre: "Piano / Teclado / Acordeón",
-    precio: "$ 5500",
+    precio: 5500,
     fechaInicio: "Inicio: 15/08",
     disponibilidad: "Curso Disponible",
     imagen: src="static/assets/compraCurso/piano.jpg"
@@ -47,7 +47,7 @@ const cursos = [
 
   {
     nombre: "Trompeta",
-    precio: "$ 6000",
+    precio: 6000,
     fechaInicio: "Inicio: 11/09",
     disponibilidad: "Curso No Disponible",
     imagen: src="static/assets/compraCurso/trompeta.jpg"
@@ -55,7 +55,7 @@ const cursos = [
 
   {
     nombre: "Batería",
-    precio: "$ 5800",
+    precio: 5800,
     fechaInicio: "Inicio: 20/08",
     disponibilidad: "Curso Disponible",
     imagen: src="static/assets/compraCurso/bata.jpg"
@@ -64,7 +64,7 @@ const cursos = [
 
   {
     nombre: "Bajo Eléctrico",
-    precio: "$ 5500",
+    precio: 5500,
     fechaInicio: "Inicio: 14/08",
     disponibilidad: "Curso Disponible",
     imagen: src="static/assets/compraCurso/bajo.jpg"
@@ -72,7 +72,7 @@ const cursos = [
 
   {
     nombre: "Violín",
-    precio: "$ 7500",
+    precio: 7500,
     fechaInicio: "Inicio: 11/08",
     disponibilidad: "Curso Disponible",
     imagen: src="static/assets/compraCurso/violin.jpg"
@@ -80,7 +80,7 @@ const cursos = [
 
   {
     nombre: "Canto",
-    precio: "$ 5900",
+    precio: 5900,
     fechaInicio: "Inicio: 10/08",
     disponibilidad: "Curso Disponible",
     imagen: src="static/assets/compraCurso/canto.jpg"
@@ -102,10 +102,45 @@ for(const curso of cursos){
     <p class="card-text" style="font-family: montserrat";>${curso.precio}</p>
     <p class="card-text" style="font-family: montserrat";>${curso.fechaInicio}</p>
     <p class="card-text" style="font-family: montserrat";>${curso.disponibilidad}</p>
-    <a href="#" class="btn btn-dark" style="font-family: montserrat";>COMPRAR CURSO</a>
+    <button id="miBoton--${curso.nombre}" class="btn btn-dark" style="font-family: montserrat";>AGERGAR AL CARRITO</button>
   </div>
 </div>
     `;
     cards.append(card);
+
+    //AGREGAR ELEMENTOS AL CARRITO
+    let miBoton = document.getElementById(`miBoton--${curso.nombre}`);
+
+    miBoton.addEventListener("click", (e) => {
+      e.preventDefault();
+      console.log("Agregaste" + " " + curso.nombre + " " +"al carrito \nTotal a pagar: $"+ curso.precio);
+      cursos.push(curso.nombre);
+    })
+
 }
+
+
+//EFECTUAR LA COMPRA TOTAL
+
+let botonFinDeCompra = document.getElementById("compraFinal")
+let precioFinal = 0
+let finalCompra = 0
+botonFinDeCompra.addEventListener ("click", (e) => {
+
+  e.preventDefault ();
+  precioFinal = cursos.map (cursos => cursos.precio)
+  finalCompra = precioFinal.reduce ((ac,el) => ac + el,0)
+  console.table(cursos);
+  const filtro = cursos.filter ((cur) => cur.disponibilidad=="Curso No Disponible")
+  console.log ("Los siguientes Curso No Están Disponibles")
+  console.table (filtro);
+
+  console.log ("El total a pagar es $" + finalCompra);
+
+
+})
+
+
+
+
 

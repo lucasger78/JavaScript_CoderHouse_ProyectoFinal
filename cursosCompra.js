@@ -91,55 +91,73 @@ const cursos = [
   
   ];
 
+//CARDS
+function crearCard() {
+  let cards=document.getElementById("cursosCompra");
 
-let cards=document.getElementById("cursosCompra");
-for(const curso of cursos){
+  for(const curso of cursos){
+
     let card=document.createElement("div");
     card.className="card col-4 justify-content-md-center align-items-center";
     card.innerHTML=`
     <div class="card bg-primary text-black text-center p-3" style="width: 18rem;">        
-  <img class="card-img-top" src=${curso.imagen} alt="Card image cap">
-  <div class="card-body">
-    <h5 class="card-title" style="font-family: montserrat black";>${curso.nombre}</h5>
-    <p class="card-text" style="font-family: montserrat";>${curso.precio}</p>
-    <p class="card-text" style="font-family: montserrat";>${curso.fechaInicio}</p>
-    <p class="card-text" style="font-family: montserrat";>${curso.disponibilidad}</p>
-    <button id="miBoton--${curso.nombre}" class="btn btn-dark" style="font-family: montserrat";>AGERGAR AL CARRITO</button>
+    <img class="card-img-top" src=${curso.imagen} alt="Card image cap">
+      <div class="card-body">
+        <h5 class="card-title" style="font-family: montserrat black";>${curso.nombre}</h5>
+        <p class="card-text" style="font-family: montserrat";>${curso.precio}</p>
+        <p class="card-text" style="font-family: montserrat";>${curso.fechaInicio}</p>
+        <p class="card-text" style="font-family: montserrat";>${curso.disponibilidad}</p>
+      <button id="miBoton--${curso.nombre}" class="btn btn-dark" style="font-family: montserrat";>AGERGAR AL CARRITO</button>
+    </div>
   </div>
-</div>
     `;
-    cards.append(card);
+  cards.append(card);
+
+  
 
     //AGREGAR ELEMENTOS AL CARRITO
-    let miBoton = document.getElementById(`miBoton--${curso.nombre}`);
+  let miBoton = document.getElementById(`miBoton--${curso.nombre}`);
 
-    miBoton.addEventListener("click", (e) => {
-      e.preventDefault();
-      console.log("Agregaste" + " " + curso.nombre + " " +"al carrito \nTotal a pagar: $"+ curso.precio);
-      compra.push(curso);
+  miBoton.addEventListener("click", (e) => {
+    e.preventDefault();
+    console.log("Agregaste" + " " + curso.nombre + " " +"al carrito \nTotal a pagar: $"+ curso.precio);
+    compra.push(curso);
+   
     })
 
+  }
 }
+crearCard();
+
 
 
 //EFECTUAR LA COMPRA TOTAL
+function comprar(){
 
-let botonFinDeCompra = document.getElementById("compraFinal")
-let precioFinal = 0
-let finalCompra = 0
-botonFinDeCompra.addEventListener ("click", (e) => {
+  let botonFinDeCompra = document.getElementById("compraFinal")
+  let precioFinal = 0
+  let finalCompra = 0
+  botonFinDeCompra.addEventListener ("click", (e) => {
 
-  e.preventDefault ();
-  //precioFinal = cursos.map (curso => curso.precio)
-  finalCompra = compra.reduce ((ac,curso) => ac + curso.precio,0)
-  console.table(compra);
-  const filtro = compra.filter ((cur) => cur.disponibilidad=="Curso No Disponible")
-  console.log ("Los siguientes Curso No Están Disponibles")
-  console.table (filtro);
+    e.preventDefault ();
+  
+    finalCompra = compra.reduce ((ac,curso) => ac + curso.precio,0)
+  
+    console.table(compra);
+    const filtro = compra.filter ((cur) => cur.disponibilidad=="Curso No Disponible")
+ 
+    console.log ("Los siguientes Curso No Están Disponibles")
+    console.table (filtro);
+  
 
-  console.log ("El total a pagar es $" + finalCompra);
+    // finalCompra = compra.reduce ((ac,curso, filtro) => ac + curso.precio - filtro, 0)
+    console.log ("El total a pagar es $" + finalCompra);
 
+    //Object.freeze(cur)
 
 })
+
+}
+comprar();
 
 

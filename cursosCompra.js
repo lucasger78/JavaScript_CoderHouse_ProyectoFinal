@@ -87,7 +87,7 @@ class Curso {
       disponibilidad: "Curso Disponible",
       imagen: src="static/assets/compraCurso/canto.jpg"
     },
-  
+    
     
     ];
   
@@ -113,6 +113,15 @@ class Curso {
       `;
     cards.append(card);
   
+    compra.length === 0 && Swal.fire({
+      title: 'EL CARRITO ESTÁ VACÍO',
+      // text: `${compra}`+ 'Total a pagar es $: '+ finalCompra,    
+      text: 'Elegí un Curso para Iniciar tu Compra',
+      imageUrl: 'static/assets/img/carritovacio.png',
+      imageWidth: 80,
+      imageHeight: 80,
+      // imageAlt: 'ok',
+  });
     
   
       //AGREGAR ELEMENTOS AL CARRITO
@@ -123,6 +132,18 @@ class Curso {
       console.log("Agregaste" + " " + curso.nombre + " " +"al carrito \nTotal a pagar: $"+ curso.precio);
       compra.push(curso);
       localStorage.setItem("compra",JSON.stringify(compra));
+      
+      Toastify({
+        text:"AGREGADO",
+        duration:3500,
+        gravity:"top",
+        position:"right",
+        style:{
+          background: "linear-gradient(to right, #212529, #2f3236)" 
+        }
+    }).showToast();
+    
+      
      
       })
   
@@ -137,7 +158,7 @@ class Curso {
   function comprar(){
   
     let botonFinDeCompra = document.getElementById("compraFinal")
-    let precioFinal = 0
+    //let precioFinal = 0
     let finalCompra = 0
     botonFinDeCompra.addEventListener ("click", (e) => {
   
@@ -156,6 +177,16 @@ class Curso {
       console.log ("El total a pagar es $" + finalCompra);
   
      console.log (JSON.parse(localStorage.getItem('compra')))
+
+     Swal.fire({
+      title: 'GRACIAS POR TU COMPRA',
+      // text: `${compra}`+ 'Total a pagar es $: '+ finalCompra,    
+      text: 'Estamos preparando todo para el envío.'  + `${cursos.nombre}` + 'El total a pagar es $' + finalCompra,
+      imageUrl: 'static/assets/img/ok.png',
+      imageWidth: 90,
+      imageHeight: 80,
+      imageAlt: 'ok',
+  });
   
   })
   
@@ -165,3 +196,5 @@ class Curso {
 
 
 
+const carroCompra = JSON.parse(localStorage.getItem('compra')) || [];
+console.log(carroCompra);

@@ -87,12 +87,10 @@ class Curso {
       disponibilidad: "Curso Disponible",
       imagen: src="static/assets/compraCurso/canto.jpg"
     },
-    
+  
     
     ];
   
-
-
   //CARDS
   function crearCard() {
     let cards=document.getElementById("cursosCompra");
@@ -115,18 +113,9 @@ class Curso {
       `;
     cards.append(card);
   
-    compra.length === 0 && Swal.fire({
-      title: 'EL CARRITO ESTÁ VACÍO',
-      // text: `${compra}`+ 'Total a pagar es $: '+ finalCompra,    
-      text: 'Elegí un Curso para Iniciar tu Compra',
-      imageUrl: 'static/assets/img/carritovacio.png',
-      imageWidth: 80,
-      imageHeight: 80,
-      imageAlt: 'ok',
-  });
     
-   
-    //AGREGAR ELEMENTOS AL CARRITO
+  
+      //AGREGAR ELEMENTOS AL CARRITO
     let miBoton = document.getElementById(`miBoton--${curso.nombre}`);
   
     miBoton.addEventListener("click", (e) => {
@@ -135,40 +124,12 @@ class Curso {
       compra.push(curso);
       localStorage.setItem("compra",JSON.stringify(compra));
 
-      //IDEAS A DESARROLLAR PARA ANULAR EL BOTON EN LOS NO DISPONIBLES
-
-      // Object.freeze(JSON.stringify(curso.disponibilidad="Curso No Disponible"));
-
-        // curso.disponibilidad="Curso Disponible" && Swal.fire({
-
-        //   title: 'EL CURSO NO ESTÁ DISPONIBLE',
-        //   // text: `${compra}`+ 'Total a pagar es $: '+ finalCompra,    
-        //   text: 'Elegí un Curso para realizar tu Compra',
-        //   imageUrl: 'static/assets/img/noOk.png',
-        //   imageWidth: 80,
-        //   imageHeight: 80,
-        //   imageAlt: 'ok',
-        // });
-      
-        Toastify({
-          text:"AGREGADO",
-          duration:3500,
-          gravity:"top",
-          position:"right",
-          style:{
-            background: "linear-gradient(to right, #212529, #2f3236)"   
-          }
-         
-      }).showToast();
-    
-      
+     
      
       })
   
     }
   }
-
-  
   crearCard();
   
  
@@ -178,7 +139,7 @@ class Curso {
   function comprar(){
   
     let botonFinDeCompra = document.getElementById("compraFinal")
-    //let precioFinal = 0
+    let precioFinal = 0
     let finalCompra = 0
     botonFinDeCompra.addEventListener ("click", (e) => {
   
@@ -193,33 +154,18 @@ class Curso {
       console.table (filtro);
     
   
-      //finalCompra = compra.reduce ((ac,curso, filtro) => ac + curso.precio - filtro, 0)
+      // finalCompra = compra.reduce ((ac,curso, filtro) => ac + curso.precio - filtro, 0)
       console.log ("El total a pagar es $" + finalCompra);
   
      console.log (JSON.parse(localStorage.getItem('compra')))
-     localStorage.removeItem("compra",JSON.stringify(compra));
-     
-     
-     
-    
-
-   swal.fire
-     Swal.fire({
-      title: 'GRACIAS POR TU COMPRA',
-      // text: `${compra}`+ 'Total a pagar es $: '+ finalCompra,    
-      text: 'Tus cursos: '  + JSON.stringify(compra) + ' El total a pagar es $ '+ finalCompra,
-      imageUrl: 'static/assets/img/ok.png',
-      imageWidth: 90,
-      imageHeight: 80,
-      imageAlt: 'ok',
-  });
-
-
+  
   })
   
   }
    
   comprar();
-  
+
+
+
 const carroCompra = JSON.parse(localStorage.getItem('compra')) || [];
 console.log(carroCompra);

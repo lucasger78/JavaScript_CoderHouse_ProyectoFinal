@@ -10,8 +10,12 @@
         <title>Inicio</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
         <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
-       
-        
+        <!-- Toastify -->
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+        <!-- AOS -->
+        <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+        <!-- Vanilla Toast -->
+        <link rel="stylesheet" href="plugins/VanillaToasts-master/vanillatoasts.css">        
         <!-- Google fonts-->
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet" />
         <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i" rel="stylesheet" />
@@ -37,12 +41,11 @@
         <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
 
 
-
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="static/css/styles.css" rel="stylesheet" />
     </head>
     <body>
-
+            
         
 
         <header>
@@ -72,55 +75,88 @@
                 </div>
             </div>
         </nav>
-<section class="page-section">
-    <div class="container">
-        <div class="product-item">
-            <div class="product-item-title d-flex">
-                <div class="bg-faded p-5 d-flex ms-auto rounded">
-                    <h2 class="section-heading mb-0">
-                        <span class="section-heading-lower">NUESTRA HISTORIA</span>  
-                        <span class="section-heading-upper">Así Empezamos...</span>                                              
-                    </h2>
-                    
-                </div>
-            </div>
-            <img class="product-item-img mx-auto d-flex rounded img-fluid mb-3 mb-lg-0" src=static\assets\img\products-01.jpg alt="..." />
-            <div class="product-item-description d-flex me-auto">
-                <div class="bg-faded p-5 rounded"><h6 class="mb-0" style= "font-family: montserrat, helvetica neue, open sans, source Sans pro">We take pride in our work, and it shows. Every time you order a beverage from us, we guarantee that it will be an experience worth having. Whether it's our world famous Venezuelan Cappuccino, a refreshing iced herbal tea, or something as simple as a cup of speciality sourced black coffee, you will be coming back for more.</h6></div>
-            </div>
-            <br>
-            <br>
-            <br>
-        
-            <div class="product-item-description d-flex me-auto">
-              
-                &nbsp;&nbsp;&nbsp;&nbsp;<img class="product-item-img me-auto d-flex rounded" src=static\assets\img\about1.jpg alt="..." /> 
-        </div>
-        
-        <div class="product-item-description d-flex ms-auto">  
-            <div class="product-item-description d-flex me-auto">
-                <div class="bg-faded p-5 rounded">
-                    <h6 class="text-center" style= "font-family: montserrat black, helvetica neue, open sans, source Sans pro">Buscanos en Instagram      
-                        <br>
-                        <br>
-                        <a href="https://www.instagram.com/ritmourbanocba/"> 
-                            <img class="product-item-img mx-auto d-flex rounded img-fluid mb-3 mb-lg-0" src=static\assets\img\LogInsta.png alt="..." /> 
-                            </a>
-                        <br> 
-                        ritmourbanocba                                            
-                    </h6></div>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  
-                <div class="bg-faded p-5 rounded">
-                    <h6 class="text-center" style= "font-family: montserrat black, helvetica neue, open sans, source Sans pro" >Escribinos a nuestro Whatsapp<br><br> 
-                        <a href="https://walink.co/61d989"> 
-                            <img class="product-item-img mx-auto d-flex rounded img-fluid mb-3 mb-lg-0" src=static\assets\img\LogWhats.png alt="..." /> 
-                        </a> 
-                        <br> +54 9 3517 61-2165 </h6>
-                    
-                </div> 
-                
-        </div>
-                 
-    </div>
-</section>
+
+
+  
+    <!-- FORMULARIO -->
+<br>
+<br>
+ <div class="container">
+     <div class="product-item">
+         <div class="product-item-title d-flex col-md-4 offset-md-4">
+             <div class="bg-faded p-4 d-flex ms-auto rounded  ">
+ <section id="contacto">
+             <h2 class="text-center" style="font-size: 25px; font-family: montserrat black">DEJÁ TUS DATOS Y RECIBÍ EL LINK AL CURSO</h2>
+             <br>
+             <div class="formulario">
+                 <div class="form__margin">
+                     <form id="form" style="font-family: montserrat medium">
+                         <div class="mb-3">
+                             <label for="exampleFormControlInput1" class="form-label label__margin" style="font-family: montserrat medium">NOMBRE</label>
+                             <input type="text" class="form-control nombreForm" id="name"
+                                 placeholder="Introduzca su nombre" name="name" required>
+                         </div>
+                         <div class="mb-3">
+                             <label for="exampleFormControlInput1" class="form-label">CORREO ELECTRÓNICO</label>
+                             <input type="email" class="form-control" id="email"
+                                 placeholder="e-mail" name="email" required>
+                         </div>
+                            <div class="mb-3">
+                             <label for="number_phone" class="form-label">TELÉFONO</label>
+                             <input type="number" class="form-control telForm" id="phone"
+                                 placeholder="Introduzca su número de teléfono" name="phone" required>
+                         </div>
+                         <!-- <div class="mb-3">
+                             <label for="exampleFormControlTextarea1" class="form-label">MENSAJE</label>
+                             <textarea class="form-control" id="" rows="3"
+                                 placeholder="Deje su mensaje aquí" name="message" required></textarea>
+                         </div> --> 
+                         <button id="btnSubmit" class="btn btn-success btn-dark mb-3 col-md-4 offset-md-4" type="submit">ENVIAR</button>
+                     </form>
+                     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+                     
+                     <script type="text/javascript">
+                         emailjs.init('Od-FpZp72Cg-O2WOv')
+                     </script>
+                 <!-- </div>-->
+ 
+ 
+             </div> 
+         
+         </section>
+     </div>
+ </div>
+</div>
+</div>
+
+
+
+
+    <!-- Vanilla Toast -->
+    <script src="plugins/VanillaToasts-master/vanillatoasts.js"></script>
+    <!-- Sweet Alert -->
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- Toastify -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <!-- Luxon -->
+    <script src="https://cdn.jsdelivr.net/npm/luxon@2.4.0/build/global/luxon.min.js"></script>
+    <!-- AOS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <!-- <script src="./cursosCompra.js"></script> -->
+    <script src="formulario.js"></script>
+
+
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
 

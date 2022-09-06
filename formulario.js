@@ -43,6 +43,9 @@ document.getElementById('form')
       console.log(email.value);
       usuario.push(email.value);    
       localStorage.setItem("email", JSON.stringify(usuario))
+
       form.reset();
       
   });
+
+  

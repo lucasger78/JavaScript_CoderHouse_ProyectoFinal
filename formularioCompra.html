@@ -39,6 +39,7 @@
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
+        
 
 
         <!-- Core theme CSS (includes Bootstrap)-->
@@ -90,7 +91,8 @@
              <br>
              <div class="formulario">
                  <div class="form__margin">
-                     <form id="form" style="font-family: montserrat medium">
+                     <form id="form" action="https://formsubmit.io/send/info.lucasph@gmail.com" method="POST"style="font-family: montserrat medium">
+                     <!-- <form id="form" style="font-family: montserrat medium"> -->
                          <div class="mb-3">
                              <label for="exampleFormControlInput1" class="form-label label__margin" style="font-family: montserrat medium">NOMBRE</label>
                              <input type="text" class="form-control nombreForm" id="name"
@@ -105,20 +107,23 @@
                              <label for="number_phone" class="form-label">TELÉFONO</label>
                              <input type="number" class="form-control telForm" id="phone"
                                  placeholder="Introduzca su número de teléfono" name="phone" required>
+
+                             
                          </div>
-                         <!-- <div class="mb-3">
-                             <label for="exampleFormControlTextarea1" class="form-label">MENSAJE</label>
-                             <textarea class="form-control" id="" rows="3"
-                                 placeholder="Deje su mensaje aquí" name="message" required></textarea>
-                         </div> --> 
+                        
                          <button id="btnSubmit" class="btn btn-success btn-dark mb-3 col-md-4 offset-md-4" type="submit">ENVIAR</button>
+                         <!-- <input id="btnSubmit" class="btn btn-success btn-dark mb-3 col-md-4 offset-md-4" type="submit" value="ENVIAR"> -->
+                         <!-- <input type="hidden" name="_next" value="http://127.0.0.1:5500/compra.html"> -->
+                         <!-- <input type="hidden" name="_next" value="http://compra.html"> -->
+                                 <!-- <input type="hidden" name="_captcha" value="false"> -->
                      </form>
+
                      <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
                      
                      <script type="text/javascript">
                          emailjs.init('Od-FpZp72Cg-O2WOv')
                      </script>
-                 <!-- </div>-->
+                </div>
  
  
              </div> 
@@ -128,27 +133,28 @@
  </div>
 </div>
 </div>
+<br>
+<br>
+<br>
+<br>
 
 
 
+<footer class="footer text-faded text-center py-5">
+    <div class="container"><p class="m-0 small" style= "font-family: montserrat, helvetica neue, open sans, source sans pro">Copyright &copy; Ritmo Urbano 2022</p></div>
+</footer>
 
-    <!-- Vanilla Toast -->
-    <script src="plugins/VanillaToasts-master/vanillatoasts.js"></script>
-    <!-- Sweet Alert -->
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <!-- Toastify -->
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
-    <!-- Luxon -->
-    <script src="https://cdn.jsdelivr.net/npm/luxon@2.4.0/build/global/luxon.min.js"></script>
-    <!-- AOS -->
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <!-- <script src="./cursosCompra.js"></script> -->
-    <script src="formulario.js"></script>
-
-
-
+<!-- Sweet Alert -->
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<!-- Toastify -->
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+<!-- Luxon -->
+<script src="https://cdn.jsdelivr.net/npm/luxon@2.4.0/build/global/luxon.min.js"></script>
+<!-- AOS -->
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 </body>
 </html>
+
 
 
 

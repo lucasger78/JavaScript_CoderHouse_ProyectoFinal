@@ -9,14 +9,6 @@ class Curso {
   }
 }
 
-class CursosCarrito {
-  constructor(nombre, fechaInicio, precio) {
-      this.nombre = nombre;
-      this.fechaInicio = fechaInicio;
-      this.precio = precio;
-  }
-}
-
 
 let elementoCarrito = [];
 const cursosCarro = [
@@ -283,8 +275,8 @@ function eliminar(nombre) {
   elementoCarrito.splice(indice, 1);//eliminando del carro
   let fila = document.getElementById(`fila${nombre}`);
   document.getElementById("items").removeChild(fila);
-  localStorage.setItem("elementoCarrito", JSON.stringify(elementoCarrito)); 
-  
+  localStorage.removeItem("elementoCarrito", JSON.stringify(elementoCarrito)); 
+  mostrarCarrito();
  
   Toastify({
     text:"ELIMINADO",

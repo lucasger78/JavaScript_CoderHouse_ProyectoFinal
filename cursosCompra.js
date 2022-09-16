@@ -9,9 +9,82 @@ class Curso {
   }
 }
 
+class CursosCarrito {
+  constructor(nombre, fechaInicio, precio) {
+      this.nombre = nombre;
+      this.fechaInicio = fechaInicio;
+      this.precio = precio;
+  }
+}
 
-let compra = [];
 
+let elementoCarrito = [];
+const cursosCarro = [
+
+  {
+    nombre: "Guitarra: Eléctrica / Acústica / Ukelele",
+    fechaInicio: "Inicio: 10/08",
+    precio: 5000,
+    
+  },
+
+  {
+    nombre: "Saxo Alto / Tenor",
+    fechaInicio: "Inicio: 12/08",
+    precio: 6500,
+    
+  },
+  {
+    nombre: "Flauta Traversa",
+    fechaInicio: "Inicio: 10/08",
+    precio: 4500,
+    
+  },
+
+  {
+    nombre: "Piano / Teclado / Acordeón",
+    fechaInicio: "Inicio: 15/08",
+    precio: 5500,
+    
+  },
+
+  {
+    nombre: "Trompeta",
+    fechaInicio: "Inicio: 11/09",
+    precio: 6000,
+    
+  },
+
+  {
+    nombre: "Batería",
+    fechaInicio: "Inicio: 20/08",
+    precio: 5800,
+    
+  },
+
+
+  {
+    nombre: "Bajo Eléctrico",
+    fechaInicio: "Inicio: 14/08",
+    precio: 5500,
+   
+  },
+
+  {
+    nombre: "Violín",
+    fechaInicio: "Inicio: 11/08",
+    precio: 7500,
+    
+  },
+
+  {
+    nombre: "Canto",
+    fechaInicio: "Inicio: 10/08",
+    precio: 5900,
+    
+  },
+
+];
 const cursos = [
 
   {
@@ -89,7 +162,16 @@ const cursos = [
   
   ];
 
+  //RECUPERAR CARRITO ABANDONADO
+  elementoCarrito = JSON.parse(localStorage.getItem('elementoCarrito')) || []
 
+  const contenedorCarritoCompras = document.querySelector("#items")
+  
+  const contenedorFooterCarrito = document.querySelector("#footer");
+
+  crearCard();
+  mostrarCarrito();
+  comprar();
 
 //CARDS
 function crearCard() {
@@ -101,7 +183,7 @@ function crearCard() {
     card.className="card col-4 justify-content-md-center align-items-center";
     card.innerHTML=`
     <div class="card bg-primary text-black text-center p-3" style="width: 18rem;">        
-    <img class="card-img-top" src=${curso.imagen} alt="Card image cap">
+    <img class="card-img-top" src=${curso.imagen} alt="${curso.nombre}">
       <div class="card-body">
         <h5 class="card-title" style="font-family: montserrat black";>${curso.nombre}</h5>
         <p class="card-text" style="font-family: montserrat";>${curso.precio}</p>
@@ -114,7 +196,7 @@ function crearCard() {
   cards.append(card);
 
   // Para iniciar compra
-  compra.length === 0 && Swal.fire({
+  elementoCarrito.length === 0 && Swal.fire({
     title: 'EL CARRITO ESTÁ VACÍO',     
     text: 'Elegí un Curso para Iniciar tu Compra',
     imageUrl: 'static/assets/img/carritovacio.png',
@@ -125,13 +207,15 @@ function crearCard() {
 });
  
   //AGREGAR ELEMENTOS AL CARRITO
+ 
   let miBoton = document.getElementById(`miBoton--${curso.nombre}`);
 
-  miBoton.addEventListener("click", (e) => {
-    e.preventDefault();
-    console.log("Agregaste" + " " + curso.nombre + " " +"al carrito \nTotal a pagar: $"+ curso.precio);
-    compra.push(curso);
-    localStorage.setItem("compra",JSON.stringify(compra));
+  miBoton.addEventListener("click", (e) => {    
+    elementoCarrito.push(curso);
+    
+    localStorage.setItem("elementoCarrito",JSON.stringify(elementoCarrito));
+
+    
     
       Toastify({
         text:"AGREGADO",
@@ -143,124 +227,107 @@ function crearCard() {
         }
        
     }).showToast();
-   
+
     })
 
   }
 }
 
-crearCard();
 
 
-//EFECTUAR LA COMPRA TOTAL
+
+//MOSTRAR CARRITO
+
+function mostrarCarrito(){
+    
+    finalCompra = elementoCarrito.reduce ((ac,curso) => ac + curso.precio,0)
+    let armarCarrito = document.getElementById("carritologo")
+    armarCarrito.addEventListener("click", (e) => {
+    
+    contenedorCarritoCompras.innerHTML = "";
+   
+       elementoCarrito.forEach(
+
+        (elemento)=>{
+
+            let itemCarrito = document.createElement("tr");
+           itemCarrito.id = `fila${elemento.nombre}`;
+
+            itemCarrito.innerHTML = `
+
+
+              <td>${elemento.nombre}</td>
+              <td>${elemento.fechaInicio}</td>
+              <td>${elemento.precio}</td>
+              <td> <button class='btn btn-light' onclick='eliminar("${elemento.nombre}")'>🗑️</button>
+    
+
+              `;
+            contenedorCarritoCompras.append(itemCarrito);
+            mostrarCarrito()
+
+    }
+
+  );
+
+  cursosCarro.length === 0 ? contenedorFooterCarrito.innerHTML = `<th scope="row" colspan="5">Carrito vacío</th>` :
+  contenedorFooterCarrito.innerHTML = `<th scope="row" colspan="5">Total de la compra: $${finalCompra}</th>`;
+  
+
+    }
+)}
+
+//ELIMINAR PRODUCTO CARRITO
+function eliminar(nombre) {
+  let indice = elementoCarrito.find(el => el.nombre == nombre);
+  elementoCarrito.splice(indice, 1);//eliminando del carro
+  let fila = document.getElementById(`fila${nombre}`);
+  document.getElementById("items").removeChild(fila);
+  localStorage.setItem("elementoCarrito", JSON.stringify(elementoCarrito)); 
+  
+ 
+  Toastify({
+    text:"ELIMINADO",
+    duration:3500,
+    gravity:"top",
+    position:"right",
+    style:{
+      background: "linear-gradient(to right, #212529, #2f3236)"   
+    }
+   
+}).showToast();
+
+}
+mostrarCarrito(); 
+
+
+//COMPRAR
 function comprar(){
 
   let botonFinDeCompra = document.getElementById("compraFinal")
   
-  let finalCompra = 0
-  botonFinDeCompra.addEventListener ("click", (e) => {
-
-    e.preventDefault ();
-  
-    finalCompra = compra.reduce ((ac,curso) => ac + curso.precio,0)
-  
-    console.table(compra);
-    const filtro = compra.filter ((cur) => cur.disponibilidad=="Curso No Disponible")
  
-     
-    console.log ("El total a pagar es $" + finalCompra);
+  botonFinDeCompra.addEventListener ("click", (e) => {
+    
 
-   console.log (JSON.parse(localStorage.getItem('compra')))
-   localStorage.removeItem("compra",JSON.stringify(compra));
    
 
- swal.fire
-   Swal.fire({
-    
-    title: 'GRACIAS POR TU COMPRA \nCOMPLETÁ EL FORMULARIO Y RECIBÍ EL LINK',
-   //text: 'Tus cursos: '  + JSON.stringify(compra.nombre) + ' El total a pagar es $ '+ finalCompra,
-    text: 'El total a pagar es $ '+ finalCompra,
-    imageUrl: 'static/assets/img/ok.png',
-    imageWidth: 90,
-    imageHeight: 80,
-    imageAlt: 'ok',
-    style:{
-      font: 'montserrat medium'
-                    }
-}).then((result) => {
-  if (result.value) {
-    window.location.href = "formularioCompra.html";
-  }
-});
+   console.log (JSON.parse(localStorage.getItem('elementoCarrito')))
+   localStorage.removeItem("elementoCarrito",JSON.stringify(elementoCarrito));
 
-
-// Swal.fire({
-    
-//   title: 'GRACIAS POR TU COMPRA \nCOMPLETÁ EL FORMULARIO Y RECIBÍ EL LINK',
-//   // text: 'Tus cursos: '  + JSON.stringify(compra) + ' El total a pagar es $ '+ finalCompra,
-//   text: 'El total a pagar es $ '+ finalCompra,
-//   imageUrl: 'static/assets/img/ok.png',
-//   imageWidth: 90,
-//   imageHeight: 80,
-//   imageAlt: 'ok',
-  
-// });
-
+   
+   
 
 })
 }
  
-comprar();
-const carroCompra = JSON.parse(localStorage.getItem('compra')) || [];
-console.log(carroCompra);
 
 
-//FORMULARIO (YA SE INDIVIADUALIZÓ)
-// let usuario = [];
-// const formularioNombre = document.querySelector(".nombreForm");
-// const telefonoFormulario = document.querySelector(".telForm");
 
-// formularioNombre.onchange = function () {
-//   console.log(formularioNombre.value);
-//   usuario.push(formularioNombre.value);
-//   localStorage.setItem("usuario", JSON.stringify(usuario));
-// }
 
-// telefonoFormulario.onchange = function () {
-//   console.log(telefonoFormulario.value);
-//   usuario.push(telefonoFormulario.value);
-//   localStorage.setItem("usuario", JSON.stringify(usuario));
-// }
 
-// const btn = document.getElementById('btnSubmit');
+ 
 
-// document.getElementById('form')
-//   .addEventListener('submit', function (event) {
-//       event.preventDefault();
 
-//       const serviceID = 'default_service';
-//       const templateID = 'template_7xbn0c3';
 
-//       emailjs.sendForm(serviceID, templateID, this)          
-//           .then(() => {
-//             Toastify({
-//               text:"ENVIADO",
-//               duration:2500,
-//               gravity:"top",
-//               position:"right",
-//               style:{
-//                 background: "linear-gradient(to right, #212529, #2f3236)"   
-//               }
-             
-//             }).showToast()        
-
-//           }, (err) => {
-//               alert(JSON.stringify(err));
-//           });
-//       console.log(email.value);
-//       usuario.push(email.value);    
-//       localStorage.setItem("email", JSON.stringify(usuario))
-//       form.reset();
-      
-//   });
 

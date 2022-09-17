@@ -37,7 +37,7 @@ document.getElementById('form')
              
             }).showToast()
             
-            setTimeout( function() { window.location.href = "http://127.0.0.1:5500/compra.html"; }, 2000 )  
+            // setTimeout( function() { window.location.href = "http://127.0.0.1:5500/index.html"; }, 2000 )  
 
           }, (err) => {
               alert(JSON.stringify(err));

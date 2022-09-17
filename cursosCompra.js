@@ -11,72 +11,6 @@ class Curso {
 
 
 let elementoCarrito = [];
-const cursosCarro = [
-
-  {
-    nombre: "Guitarra: Eléctrica / Acústica / Ukelele",
-    fechaInicio: "Inicio: 10/08",
-    precio: 5000,
-    
-  },
-
-  {
-    nombre: "Saxo Alto / Tenor",
-    fechaInicio: "Inicio: 12/08",
-    precio: 6500,
-    
-  },
-  {
-    nombre: "Flauta Traversa",
-    fechaInicio: "Inicio: 10/08",
-    precio: 4500,
-    
-  },
-
-  {
-    nombre: "Piano / Teclado / Acordeón",
-    fechaInicio: "Inicio: 15/08",
-    precio: 5500,
-    
-  },
-
-  {
-    nombre: "Trompeta",
-    fechaInicio: "Inicio: 11/09",
-    precio: 6000,
-    
-  },
-
-  {
-    nombre: "Batería",
-    fechaInicio: "Inicio: 20/08",
-    precio: 5800,
-    
-  },
-
-
-  {
-    nombre: "Bajo Eléctrico",
-    fechaInicio: "Inicio: 14/08",
-    precio: 5500,
-   
-  },
-
-  {
-    nombre: "Violín",
-    fechaInicio: "Inicio: 11/08",
-    precio: 7500,
-    
-  },
-
-  {
-    nombre: "Canto",
-    fechaInicio: "Inicio: 10/08",
-    precio: 5900,
-    
-  },
-
-];
 const cursos = [
 
   {
@@ -125,7 +59,6 @@ const cursos = [
     disponibilidad: "Curso Disponible",
     imagen: src="static/assets/compraCurso/bata.jpg"
   },
-
 
   {
     nombre: "Bajo Eléctrico",
@@ -205,9 +138,7 @@ function crearCard() {
   miBoton.addEventListener("click", (e) => {    
     elementoCarrito.push(curso);
     
-    localStorage.setItem("elementoCarrito",JSON.stringify(elementoCarrito));
-
-    
+    localStorage.setItem("elementoCarrito",JSON.stringify(elementoCarrito));    
     
       Toastify({
         text:"AGREGADO",
@@ -224,9 +155,6 @@ function crearCard() {
 
   }
 }
-
-
-
 
 //MOSTRAR CARRITO
 
@@ -262,9 +190,8 @@ function mostrarCarrito(){
 
   );
 
-  cursosCarro.length === 0 ? contenedorFooterCarrito.innerHTML = `<th scope="row" colspan="5">Carrito vacío</th>` :
+  elementoCarrito.length === 0 ? contenedorFooterCarrito.innerHTML = `<th scope="row" colspan="5">Carrito vacío</th>` :
   contenedorFooterCarrito.innerHTML = `<th scope="row" colspan="5">Total de la compra: $${finalCompra}</th>`;
-  
 
     }
 )}
@@ -275,9 +202,10 @@ function eliminar(nombre) {
   elementoCarrito.splice(indice, 1);//eliminando del carro
   let fila = document.getElementById(`fila${nombre}`);
   document.getElementById("items").removeChild(fila);
-  localStorage.removeItem("elementoCarrito", JSON.stringify(elementoCarrito)); 
+  localStorage.setItem("elementoCarrito", JSON.stringify(elementoCarrito)); 
+  
   mostrarCarrito();
- 
+
   Toastify({
     text:"ELIMINADO",
     duration:3500,
@@ -290,25 +218,16 @@ function eliminar(nombre) {
 }).showToast();
 
 }
-mostrarCarrito(); 
-
 
 //COMPRAR
 function comprar(){
 
-  let botonFinDeCompra = document.getElementById("compraFinal")
-  
+  let botonFinDeCompra = document.getElementById("compraFinal")  
  
-  botonFinDeCompra.addEventListener ("click", (e) => {
-    
-
-   
+  botonFinDeCompra.addEventListener ("click", (e) => {   
 
    console.log (JSON.parse(localStorage.getItem('elementoCarrito')))
    localStorage.removeItem("elementoCarrito",JSON.stringify(elementoCarrito));
-
-   
-   
 
 })
 }

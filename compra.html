@@ -59,6 +59,11 @@
         </header>
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-dark py-lg-4" id="mainNav">
+
+           
+                </div>
+            </div>
+
             <div class="container">
                 <a class="navbar-brand text-uppercase fw-bold d-lg-none" href="index.html"></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
@@ -71,56 +76,123 @@
                         <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href=compra.html>Comprar Cursos</a></li>                        
                     </ul>
 
-                    <!--BOTON CARRO LOGO-->
+                   
+                <!--BOTON REGISTRO-->
+                    <button id="reg" type="button" class="btn btn-dark" style="font-family: montserrat medium; font: size 10px;" data-bs-toggle="modal" data-bs-target="#registro" >
+                        <span>REGISTRO</span> 
+                    </button>    
+                     
+            <!--BOTON LOGIN-->
+                    <button id="log" type="button" class="btn btn-dark" style="font-family: montserrat medium; font: size 10px;" data-bs-toggle="modal" data-bs-target="#logIn" >
+                        <span>LOGIN</span>
+                    </button>
 
+
+                    <!--BOTON CARRO LOGO-->
             <button id="carritologo" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#carroModal" >
                 <i class='fas fa-shopping-cart' style='font-size:18px'></i> 
                 <input type="image" src='static/assets/img/carritologo.png'>
             </button>
-                </div>
-            </div>
+
+
+
+           
         </nav>
 
 
-<!--MODAL--> 
+<!--MODAL CARRITO--> 
 
 <div class="modal fade" id="carroModal" tabindex="-1" aria-labelledby="carroModalLabel" aria-hidden="true" style="font-family: montserrat">
-      <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-            <h5 class="modal-title" id="carroModalLabel" style="font-family: montserrat">CURSOS</h5>
-            <button type="button" class="btn-close btn-dark mb-3 col-md-4 offset-md-4" style="font-family: montserrat" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div class="container">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                            <th scope="col">Curso</th>                                
-                            <th scope="col">Precio</th>
-                            <th scope="col">Total</th>
-                            </tr>
-                        </thead>
-                        <tbody id="items"></tbody>
-                        <tfoot>
-                            <tr id="footer">
-                            <th scope="row" colspan="5">CARRITO VACÍO</th>
-                            </tr>
-                        </tfoot>
-                        </table>
-                    <div class="row" id="cards"></div>
-                </div>
-            
-            </div>
-            <div class="modal-footer">
-            <button type="button" class="btn btn-secondary btn-dark mb-3 col-md-4 offset-md-4" style="font-family: montserrat" data-bs-dismiss="modal">CERRAR</button>
-            
-            <a href="formularioCompra.html" id = "compraFinal" class="btn btn-secondary btn-dark mb-3 col-md-4 offset-md-4" style="font-family: montserrat"> COMPRAR </a>
-        </div>
-        </div>
-        </div>
-        </div>
- 
+    <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header">
+          <h5 class="modal-title" id="carroModalLabel" style="font-family: montserrat">CURSOS</h5>
+          <button type="button" class="btn-close btn-dark mb-3 col-md-4 offset-md-4" style="font-family: montserrat" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+              <div class="container">
+                  <table class="table">
+                      <thead>
+                          <tr>
+                          <th scope="col">Curso</th>                                
+                          <th scope="col">Precio</th>
+                          <th scope="col">Total</th>
+                          </tr>
+                      </thead>
+                      <tbody id="items"></tbody>
+                      <tfoot>
+                          <tr id="footer">
+                          <th scope="row" colspan="5">CARRITO VACÍO</th>
+                          </tr>
+                      </tfoot>
+                      </table>
+                  <div class="row" id="cards"></div>
+              </div>
+          
+          </div>
+          <div class="modal-footer">
+          <button type="button" class="btn btn-secondary btn-dark mb-3 col-md-4 offset-md-4" style="font-family: montserrat" data-bs-dismiss="modal">CERRAR</button>
+          
+          <a href="formularioCompra.html" id = "compraFinal" class="btn btn-secondary btn-dark mb-3 col-md-4 offset-md-4" style="font-family: montserrat"> COMPRAR </a>
+      </div>
+      </div>
+      </div>
+      </div>
+
+
+<!-- MODAL REGISTRO-->
+<div class="modal" id= registro style="font-family: montserrat medium; font: size 10px;" tabindex="-1" role="dialog" aria-labelledby="user">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h5 class="modal-title" id="user">REGISTRO</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+              <form id="frm-register" action="">        
+                  <input id="fullName" type="text" placeholder="Nombre" >
+                  <input id="userName" type="text" placeholder="Usuario" >
+                  <input id="correo"    type="text" placeholder="Email" >
+                  <input id="telefono" type="number" placeholder="Teléfono" >
+                  <input id="password" type="password" placeholder="Contraseña" >
+                  <input id="confirmPassword" type="password" placeholder="Confirme Contraseña" >
+                  <div class="buttons">
+                      <br>
+                      <br>
+                  <input class="btn btn-secondary btn-dark" type="submit" value="REGISTRARSE">
+              </form>      
+          </div>            
+      </div>  
+  </div>
+</div>
+</div>
+
+<!--MODAL LOGIN-->
+<div class="modal" id= logIn style="font-family: montserrat medium; font: size 10px" tabindex="-1" role="dialog">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h5 class="modal-title" id="Ingresar">INGRESAR</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          
+          <div class="modal-body">
+              <form id="frm-Login" action="">        
+                  <input id="NombreUsuario" type="text" placeholder="Usuario" >
+                  <input id="contraseña" type="password" placeholder="Contraseña" > 
+                  <br>
+                  <br>       
+                  <div class="buttons">
+                    <button id="ingreso" class="btn btn-secondary btn-dark">LOGIN</button>
+                  </div>      
+              </form>      
+          </div>            
+      </div>  
+  </div>
+</div>
+</div>
+
+
    <!-- TÍTULO GALERÍA DE CURSOS A LA VENTA -->
    <section class="page-section col-md-3 offset-md-4 ">
     <div class="container">
@@ -188,7 +260,9 @@
     <script src="https://cdn.jsdelivr.net/npm/luxon@2.4.0/build/global/luxon.min.js"></script>
     <!-- AOS -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <!-- <script src="./cursosCompra.js"></script> -->
+
+    <script src="registro.js"></script>
+    <script src="validacion.js"></script>
     <script src="cursosCompra.js"></script>
 
 

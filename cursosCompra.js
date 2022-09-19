@@ -97,6 +97,7 @@ const cursos = [
   crearCard();
   mostrarCarrito();
   comprar();
+  //eliminar(indice);
 
 //CARDS
 function crearCard() {
@@ -123,7 +124,7 @@ function crearCard() {
   // Para iniciar compra
   elementoCarrito.length === 0 && Swal.fire({
     title: 'EL CARRITO ESTÁ VACÍO',     
-    text: 'Elegí un Curso para Iniciar tu Compra',
+    text: 'Logueate o Registrate para Comprar',
     imageUrl: 'static/assets/img/carritovacio.png',
     imageWidth: 80,
     imageHeight: 80,
@@ -159,7 +160,7 @@ function crearCard() {
 //MOSTRAR CARRITO
 
 function mostrarCarrito(){
-    
+   
     finalCompra = elementoCarrito.reduce ((ac,curso) => ac + curso.precio,0)
     let armarCarrito = document.getElementById("carritologo")
     armarCarrito.addEventListener("click", (e) => {
@@ -184,7 +185,7 @@ function mostrarCarrito(){
 
               `;
             contenedorCarritoCompras.append(itemCarrito);
-            mostrarCarrito()
+            mostrarCarrito();
 
     }
 
@@ -198,14 +199,15 @@ function mostrarCarrito(){
 
 //ELIMINAR PRODUCTO CARRITO
 function eliminar(nombre) {
-  let indice = elementoCarrito.find(el => el.nombre == nombre);
-  elementoCarrito.splice(indice, 1);//eliminando del carro
-  let fila = document.getElementById(`fila${nombre}`);
-  document.getElementById("items").removeChild(fila);
-  localStorage.setItem("elementoCarrito", JSON.stringify(elementoCarrito)); 
-  
-  mostrarCarrito();
-
+    
+    let indice = elementoCarrito.find(el => el.nombre == nombre);
+    elementoCarrito.splice(indice, 1);//eliminando del carro
+    let fila = document.getElementById(`fila${nombre}`);
+    document.getElementById("items").removeChild(fila);
+   
+    localStorage.setItem("elementoCarrito", JSON.stringify(elementoCarrito)); 
+     
+    
   Toastify({
     text:"ELIMINADO",
     duration:3500,
@@ -217,6 +219,14 @@ function eliminar(nombre) {
    
 }).showToast();
 
+    mostrarCarrito();
+    // console.log (JSON.parse(localStorage.getItem('elementoCarrito')))
+
+    elementoCarrito.length === 0 ? contenedorFooterCarrito.innerHTML = `<th scope="row" colspan="5">Carrito vacío</th>` :
+    contenedorFooterCarrito.innerHTML = `<th scope="row" colspan="5">Total de la compra: $${finalCompra}</th>`;
+
+   
+
 }
 
 //COMPRAR
@@ -226,7 +236,7 @@ function comprar(){
  
   botonFinDeCompra.addEventListener ("click", (e) => {   
 
-   console.log (JSON.parse(localStorage.getItem('elementoCarrito')))
+   //console.log (JSON.parse(localStorage.getItem('elementoCarrito')))
    localStorage.removeItem("elementoCarrito",JSON.stringify(elementoCarrito));
 
 })

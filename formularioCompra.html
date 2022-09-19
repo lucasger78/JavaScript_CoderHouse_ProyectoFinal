@@ -72,56 +72,10 @@
                         <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href=compra.html>Comprar Cursos</a></li>
                     </ul>
 
-                <!--BOTON CARRO LOGO-->
-
-            <!-- <button id="carritologo" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#carroModal" >
-                <i class='fas fa-shopping-cart' style='font-size:18px'></i> 
-                <input type="image" src='static/assets/img/carritologo.png'>
-            </button> -->
+                
                 </div>
             </div>
         </nav>
-
-
-<!--MODAL--> 
-
-<!-- <div class="modal fade" id="carroModal" tabindex="-1" aria-labelledby="carroModalLabel" aria-hidden="true" style="font-family: montserrat">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-            <h5 class="modal-title" id="carroModalLabel" style="font-family: montserrat">CURSOS</h5>
-            <button type="button" class="btn-close btn-dark mb-3 col-md-4 offset-md-4" style="font-family: montserrat" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div class="container">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                            <th scope="col">Curso</th>                                
-                            <th scope="col">Precio</th>
-                            <th scope="col">Total</th>
-                            </tr>
-                        </thead>
-                        <tbody id="items"></tbody>
-                        <tfoot>
-                            <tr id="footer">
-                            <th scope="row" colspan="5">CARRITO VACÍO</th>
-                            </tr>
-                        </tfoot>
-                        </table>
-                    <div class="row" id="cards"></div>
-                </div>
-            
-            </div>
-            <div class="modal-footer">
-            <button type="button" class="btn btn-secondary btn-dark mb-3 col-md-4 offset-md-4" style="font-family: montserrat" data-bs-dismiss="modal">CERRAR</button>
-            
-           <a href="formularioCompra.html" id = "compraFinal" class="btn btn-secondary btn-dark mb-3 col-md-4 offset-md-4" style="font-family: montserrat"> FINALIZAR COMPRA </a>
-            </div>
-        </div>
-    </div>
- </div> -->
-
   
     <!-- FORMULARIO -->
 <br>
@@ -156,8 +110,11 @@
                          </div>
                         
                          <button id="btnSubmit" class="btn btn-success btn-dark mb-3 col-md-4 offset-md-4" type="submit">ENVIAR</button>
-                        
+
+                                                 
                          <!-- <input type="hidden" name="_next" value="http://127.0.0.1:5500/index.html"> -->
+                         <!-- con esta línea de código en teoría se redirecciona a la url que allí pongamos, pero al ser local server lo toma como spam 
+                            y no manda el email, al no ponerla cuando se envia aparece un mensaje de agradecimiento de la propia api-->
                          
                                  <!-- <input type="hidden" name="_captcha" value="false"> -->
                      </form>
@@ -173,10 +130,19 @@
              </div> 
          
          </section>
+
+        
+
+        </div>
      </div>
  </div>
 </div>
 </div>
+
+<!-- <div>
+    
+        
+    </div> -->
 <br>
 <br>
 <br>

@@ -1,8 +1,9 @@
-//FORMULARIO
 let usuario = []
 const formularioNombre = document.querySelector(".nombreForm");
 const telefonoFormulario = document.querySelector(".telForm");
+const mercPago = document.getElementById("payment-mp");
 
+//FORMULARIO
 formularioNombre.onchange = function () {
   console.log(formularioNombre.value);
   usuario.push(formularioNombre.value);
@@ -35,21 +36,21 @@ document.getElementById('form')
                 background: "linear-gradient(to right, #212529, #2f3236)"   
               }
              
-            }).showToast()
+            }).showToast()            
             
-            // setTimeout( function() { window.location.href = "http://127.0.0.1:5500/index.html"; }, 2000 )  
-
           }, (err) => {
               alert(JSON.stringify(err));
           });
       console.log(email.value);
       usuario.push(email.value);
-      
+    
       localStorage.setItem("email", JSON.stringify(usuario))
       
 
       form.reset();
       
   });
+
+
     
   

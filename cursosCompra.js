@@ -124,7 +124,7 @@ function crearCard() {
   // Para iniciar compra
   elementoCarrito.length === 0 && Swal.fire({
     title: 'EL CARRITO ESTÁ VACÍO',     
-    text: 'Logueate o Registrate para Comprar',
+    text: 'Elegí el curso para Comprar',
     imageUrl: 'static/assets/img/carritovacio.png',
     imageWidth: 80,
     imageHeight: 80,
